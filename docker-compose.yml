@@ -1,10 +1,10 @@
 services:
-  go-reverse-proxy:
-    container_name: go-reverse-proxy
-    hostname: go-reverse-proxy
+  go-proxy:
+    container_name: go-proxy
     build: .
+    environment:
+      CONFIG_SETTING: '{"log_level":"info","access_log":null,"http":{"servers":[{"name":"site","listen":"9001","proxies":[{"proxy_pass":"https://httpbin.org","proxy_path":"/httpbin","request_headers":[{"Authentication":"Basic 123456"},{"Yomama":"Pk"}]},{"proxy_pass":"https://api.nexusggr.com","proxy_path":"/fiver"},{"proxy_pass":"https://ex-api-demo-yy.568win.com","proxy_path":"/sbo-dev"},{"proxy_pass":"https://postman-echo.com","proxy_path":"/postman","request_headers":[{"Authentication":"Basic 11235453"}]}],"domains":["localhost"],"root":"/web"}]}}'
     ports:
-      - 9012:8080
-    volumes:
-      - ./:/go/src/go-reverse-proxy
-    restart: always
+      - "9012:9001"
+    # volumes:
+    #   - ./web:/go/src/web
