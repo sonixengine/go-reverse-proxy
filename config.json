@@ -1,0 +1,47 @@
+{
+    "log_level": "error",
+    "access_log": "error",
+    "http": {
+        "servers": [
+            {
+                "name": "site",
+                "listen": "8080",
+                "proxies": [
+                    {
+                        "proxy_pass": "https://httpbin.org",
+                        "proxy_path": "/httpbin",
+                        "request_headers": [
+                            {
+                                "Authentication": "Basic 123456"
+                            },
+                            {
+                                "Yomama": "Pk"
+                            }
+                        ]
+                    },
+                    {
+                        "proxy_pass": "https://postman-echo.com",
+                        "proxy_path": "/postman",
+                        "request_headers": [
+                            {
+                                "Authentication": "Basic 11235453"
+                            }
+                        ]
+                    },
+                    {
+                        "proxy_pass": "http://sbtest.a0293.lidoapp.dev",
+                        "proxy_path": "/saba",
+                        "request_headers": [
+                            {
+                                "Authentication": "Basic 11235453"
+                            }
+                        ]
+                    }
+                ],
+                "domains": [
+                    "localhost"
+                ]
+            }
+        ]
+    }
+}

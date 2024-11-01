@@ -1,0 +1,10 @@
+services:
+  go-reverse-proxy:
+    container_name: go-reverse-proxy
+    hostname: go-reverse-proxy
+    build: .
+    ports:
+      - 9012:8080
+    volumes:
+      - ./:/go/src/go-reverse-proxy
+    restart: always
